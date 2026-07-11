@@ -1,0 +1,94 @@
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+
+export function Footer() {
+  return (
+    <footer className="bg-stone-900 text-stone-300 pt-20 pb-10 border-t border-stone-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <div className="space-y-6">
+            <a href="#" className="font-serif text-3xl font-bold text-white tracking-tight block">
+              Lumina<span className="text-primary-500">.</span>
+            </a>
+            <p className="text-sm text-stone-400 leading-relaxed max-w-xs">
+              Elevating fast-casual dining and artisanal baking. Fresh ingredients, honest cooking, and a passion for flavor.
+            </p>
+            <div className="flex gap-4">
+              {/* Socials placeholder */}
+              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+                <span className="sr-only">Instagram</span>
+                IG
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+                <span className="sr-only">Facebook</span>
+                FB
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+                <span className="sr-only">Twitter</span>
+                TW
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Explore</h3>
+            <ul className="space-y-4 text-sm">
+              <li><a href="#menu" className="hover:text-primary-500 transition-colors">Our Menu</a></li>
+              <li><a href="#specials" className="hover:text-primary-500 transition-colors">Daily Specials</a></li>
+              <li><a href="#about" className="hover:text-primary-500 transition-colors">Our Story</a></li>
+              <li><a href="#gallery" className="hover:text-primary-500 transition-colors">Gallery</a></li>
+              <li><a href="#" className="hover:text-primary-500 transition-colors">Catering</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h3>
+            <ul className="space-y-4 text-sm">
+              <li className="flex gap-3">
+                <MapPin size={18} className="text-primary-500 shrink-0 mt-0.5" />
+                <span>123 Culinary Avenue,<br />Food District, NY 10001</span>
+              </li>
+              <li className="flex gap-3 items-center">
+                <Phone size={18} className="text-primary-500 shrink-0" />
+                <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 (234) 567-890</a>
+              </li>
+              <li className="flex gap-3 items-center">
+                <Mail size={18} className="text-primary-500 shrink-0" />
+                <a href="mailto:hello@luminabakery.com" className="hover:text-white transition-colors">hello@luminabakery.com</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Hours */}
+          <div>
+            <h3 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Hours</h3>
+            <ul className="space-y-4 text-sm">
+              <li className="flex justify-between items-center border-b border-stone-800 pb-2">
+                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Mon-Fri</span>
+                <span className="text-white">7:00 AM - 9:00 PM</span>
+              </li>
+              <li className="flex justify-between items-center border-b border-stone-800 pb-2">
+                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Saturday</span>
+                <span className="text-white">8:00 AM - 10:00 PM</span>
+              </li>
+              <li className="flex justify-between items-center pb-2">
+                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Sunday</span>
+                <span className="text-primary-500 font-medium">9:00 AM - 8:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-stone-800 text-sm text-stone-500 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p>© {new Date().getFullYear()} Lumina Bakery & Eats. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

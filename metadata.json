@@ -1,0 +1,6 @@
+{
+  "name": "Lumina Bakery & Eats",
+  "description": "A premium, AAA-quality responsive website for a local fast-food restaurant and bakery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
