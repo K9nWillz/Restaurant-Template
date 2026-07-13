@@ -10,6 +10,7 @@ interface AppState {
   addToCart: (item: MenuItem, quantity?: number) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
+  clearCart: () => void;
   cartTotal: number;
   cartCount: number;
 }
@@ -62,6 +63,8 @@ export const useStore = create<AppState>((set, get) => ({
       )
     };
   }),
+
+  clearCart: () => set({ cart: [] }),
   
   get cartTotal() {
     return get().cart.reduce((total, item) => {

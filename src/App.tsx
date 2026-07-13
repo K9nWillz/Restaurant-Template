@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { FeaturedMenu } from './components/FeaturedMenu';
@@ -13,8 +14,9 @@ import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { FloatingAction } from './components/FloatingAction';
 import { Chatbot } from './components/Chatbot';
+import { Admin } from './components/Admin';
 
-export default function App() {
+function MainApp() {
   return (
     <div className="min-h-screen font-sans">
       <Navbar />
@@ -37,6 +39,17 @@ export default function App() {
       <FloatingAction />
       <Chatbot />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainApp />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
   );
 }
 

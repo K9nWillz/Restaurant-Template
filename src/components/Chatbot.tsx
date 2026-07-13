@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, User, Bot, Loader2 } from 'lucide-react';
@@ -18,12 +19,17 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setIsExpanded(true), 1500);
-    const timer2 = setTimeout(() => setIsExpanded(false), 6000);
+    const triggerAnimation = () => {
+      setIsExpanded(true);
+      setTimeout(() => setIsExpanded(false), 6000);
+    };
+
+    const timer1 = setTimeout(triggerAnimation, 1500);
+    const interval = setInterval(triggerAnimation, 30000);
 
     return () => {
       clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearInterval(interval);
     };
   }, []);
 

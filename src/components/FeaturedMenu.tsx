@@ -84,7 +84,7 @@ export function FeaturedMenu() {
   );
 }
 
-function MenuCard({ item, onAdd }: { item: MenuItem; onAdd: () => void }) {
+function MenuCard({ item, onAdd }: { key?: string | number; item: MenuItem; onAdd: () => void }) {
   return (
     <motion.div
       layout

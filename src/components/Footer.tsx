@@ -1,6 +1,24 @@
+import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => setSettings(data))
+      .catch(console.error);
+  }, []);
+
+  const socials = settings?.socials || { instagram: '#', facebook: '#', tiktok: '#' };
+  const contact = settings?.contact || {
+    address: '123 Culinary Avenue, Food District, NY 10001',
+    phone: '+1 (234) 567-890',
+    email: 'hello@luminabakery.com',
+    hours: 'Mon-Fri 7 AM - 9 PM, Sat 8 AM - 10 PM, Sun 9 AM - 8 PM'
+  };
+
   return (
     <footer className="bg-stone-900 text-stone-300 pt-20 pb-10 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,15 +32,15 @@ export function Footer() {
               Elevating fast-casual dining and artisanal baking. Fresh ingredients, honest cooking, and a passion for flavor.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+              <a href={socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
                 <span className="sr-only">Instagram</span>
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+              <a href={socials.facebook} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
                 <span className="sr-only">Facebook</span>
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
+              <a href={socials.tiktok} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors">
                 <span className="sr-only">TikTok</span>
                 <svg
                   width="18"
@@ -55,15 +73,15 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3">
                 <MapPin size={18} className="text-primary-500 shrink-0 mt-0.5" />
-                <span>123 Culinary Avenue,<br />Food District, NY 10001</span>
+                <span>{contact.address}</span>
               </li>
               <li className="flex gap-3 items-center">
                 <Phone size={18} className="text-primary-500 shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 (234) 567-890</a>
+                <a href={`tel:${contact.phone}`} className="hover:text-white transition-colors">{contact.phone}</a>
               </li>
               <li className="flex gap-3 items-center">
                 <Mail size={18} className="text-primary-500 shrink-0" />
-                <a href="mailto:hello@luminabakery.com" className="hover:text-white transition-colors">hello@luminabakery.com</a>
+                <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors">{contact.email}</a>
               </li>
             </ul>
           </div>
@@ -72,17 +90,9 @@ export function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Hours</h3>
             <ul className="space-y-4 text-sm">
-              <li className="flex justify-between items-center border-b border-stone-800 pb-2">
-                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Mon-Fri</span>
-                <span className="text-white">7:00 AM - 9:00 PM</span>
-              </li>
-              <li className="flex justify-between items-center border-b border-stone-800 pb-2">
-                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Saturday</span>
-                <span className="text-white">8:00 AM - 10:00 PM</span>
-              </li>
-              <li className="flex justify-between items-center pb-2">
-                <span className="flex items-center gap-2"><Clock size={16} className="text-stone-500"/> Sunday</span>
-                <span className="text-primary-500 font-medium">9:00 AM - 8:00 PM</span>
+              <li className="flex items-start gap-3">
+                <Clock size={18} className="text-primary-500 shrink-0 mt-0.5" />
+                <span className="whitespace-pre-line text-stone-300 leading-relaxed">{contact.hours}</span>
               </li>
             </ul>
           </div>

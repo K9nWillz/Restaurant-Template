@@ -4,21 +4,35 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export function FloatingAction() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [whatsappNumber, setWhatsappNumber] = useState("1234567890");
 
   useEffect(() => {
+    // Fetch settings
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.whatsappNumber) setWhatsappNumber(data.whatsappNumber);
+      })
+      .catch(console.error);
+
+    const triggerAnimation = () => {
+      setIsExpanded(true);
+      setTimeout(() => setIsExpanded(false), 5000);
+    };
+
     // Initial slide out animation
-    const timer1 = setTimeout(() => setIsExpanded(true), 1000);
-    const timer2 = setTimeout(() => setIsExpanded(false), 5000);
+    const timer1 = setTimeout(triggerAnimation, 1000);
+    const interval = setInterval(triggerAnimation, 30000);
 
     return () => {
       clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearInterval(interval);
     };
   }, []);
 
   return (
     <a 
-      href="https://wa.me/1234567890"
+      href={`https://wa.me/${whatsappNumber}`}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-[88px] right-6 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group"
