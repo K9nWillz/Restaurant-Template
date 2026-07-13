@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState, useEffect } from 'react';
-import { Save, Loader2, ListOrdered, Settings, Bell } from 'lucide-react';
+import { Save, Loader2, ListOrdered, Settings, Bell, Trash2 } from 'lucide-react';
 
 export function Admin() {
   const [activeTab, setActiveTab] = useState<'settings' | 'orders'>('settings');
@@ -164,6 +164,26 @@ export function Admin() {
       }
     } catch (error) {
       console.error('Failed to update status', error);
+    }
+  };
+
+  const deleteOrder = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this order?")) return;
+    
+    try {
+      const res = await fetch(`/api/orders/${id}`, {
+        method: 'DELETE',
+        headers: { 
+          'x-admin-pin': adminPin
+        }
+      });
+      if (res.ok) {
+        const updatedOrders = orders.filter(o => o.id !== id);
+        setOrders(updatedOrders);
+        setUnreadOrders(updatedOrders.filter((o: any) => o.status === 'pending').length);
+      }
+    } catch (error) {
+      console.error('Failed to delete order', error);
     }
   };
 
@@ -350,20 +370,29 @@ export function Admin() {
                           <p className="text-stone-500 text-sm">{order.email}</p>
                           <p className="text-stone-400 text-xs mt-1">{new Date(order.createdAt).toLocaleString()}</p>
                         </div>
-                        <select 
-                          value={order.status}
-                          onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                          className={`px-3 py-1 rounded-full text-sm font-medium border outline-none ${
-                            order.status === 'pending' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 
-                            order.status === 'completed' ? 'bg-green-50 text-green-700 border-green-200' : 
-                            'bg-stone-100 text-stone-700 border-stone-200'
-                          }`}
-                        >
-                          <option value="pending">Pending</option>
-                          <option value="processing">Processing</option>
-                          <option value="completed">Completed</option>
-                          <option value="cancelled">Cancelled</option>
-                        </select>
+                        <div className="flex items-center gap-3">
+                          <select 
+                            value={order.status}
+                            onChange={(e) => updateOrderStatus(order.id, e.target.value)}
+                            className={`px-3 py-1 rounded-full text-sm font-medium border outline-none ${
+                              order.status === 'pending' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 
+                              order.status === 'completed' ? 'bg-green-50 text-green-700 border-green-200' : 
+                              'bg-stone-100 text-stone-700 border-stone-200'
+                            }`}
+                          >
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                          </select>
+                          <button
+                            onClick={() => deleteOrder(order.id)}
+                            className="p-2 text-stone-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors"
+                            title="Delete Order"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       </div>
                       
                       <div className="bg-stone-50 dark:bg-stone-950 rounded-lg p-4 mb-4">

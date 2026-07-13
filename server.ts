@@ -128,6 +128,23 @@ async function startServer() {
     }
   });
 
+  app.delete("/api/orders/:id", verifyAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const orders = await getOrders();
+      const updatedOrders = orders.filter((o: any) => o.id !== id);
+      
+      if (orders.length === updatedOrders.length) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+
+      await fs.writeFile(ORDERS_FILE, JSON.stringify(updatedOrders, null, 2));
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete order" });
+    }
+  });
+
   // API route for chatbot
   app.post("/api/chat", async (req, res) => {
     try {

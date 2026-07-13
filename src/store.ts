@@ -15,6 +15,15 @@ interface AppState {
   cartCount: number;
 }
 
+const calculateTotal = (cart: CartItem[]) => cart.reduce((total, item) => {
+  const price = item.menuItem.isSpecial && item.menuItem.specialPrice 
+    ? item.menuItem.specialPrice 
+    : item.menuItem.price;
+  return total + (price * item.quantity);
+}, 0);
+
+const calculateCount = (cart: CartItem[]) => cart.reduce((count, item) => count + item.quantity, 0);
+
 export const useStore = create<AppState>((set, get) => ({
   isDarkMode: false,
   toggleDarkMode: () => set((state) => {
@@ -28,6 +37,8 @@ export const useStore = create<AppState>((set, get) => ({
   }),
   
   cart: [],
+  cartTotal: 0,
+  cartCount: 0,
   isCartOpen: false,
   toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
   
@@ -46,36 +57,41 @@ export const useStore = create<AppState>((set, get) => ({
     }
     
     // Automatically open cart when adding
-    return { cart: newCart, isCartOpen: true };
+    return { 
+      cart: newCart, 
+      cartTotal: calculateTotal(newCart),
+      cartCount: calculateCount(newCart),
+      isCartOpen: true 
+    };
   }),
   
-  removeFromCart: (itemId: string) => set((state) => ({
-    cart: state.cart.filter((c) => c.menuItem.id !== itemId)
-  })),
+  removeFromCart: (itemId: string) => set((state) => {
+    const newCart = state.cart.filter((c) => c.menuItem.id !== itemId);
+    return {
+      cart: newCart,
+      cartTotal: calculateTotal(newCart),
+      cartCount: calculateCount(newCart)
+    };
+  }),
   
   updateQuantity: (itemId: string, quantity: number) => set((state) => {
     if (quantity <= 0) {
-      return { cart: state.cart.filter((c) => c.menuItem.id !== itemId) };
+      const newCart = state.cart.filter((c) => c.menuItem.id !== itemId);
+      return { 
+        cart: newCart,
+        cartTotal: calculateTotal(newCart),
+        cartCount: calculateCount(newCart)
+      };
     }
+    const newCart = state.cart.map((c) => 
+      c.menuItem.id === itemId ? { ...c, quantity } : c
+    );
     return {
-      cart: state.cart.map((c) => 
-        c.menuItem.id === itemId ? { ...c, quantity } : c
-      )
+      cart: newCart,
+      cartTotal: calculateTotal(newCart),
+      cartCount: calculateCount(newCart)
     };
   }),
 
-  clearCart: () => set({ cart: [] }),
-  
-  get cartTotal() {
-    return get().cart.reduce((total, item) => {
-      const price = item.menuItem.isSpecial && item.menuItem.specialPrice 
-        ? item.menuItem.specialPrice 
-        : item.menuItem.price;
-      return total + (price * item.quantity);
-    }, 0);
-  },
-  
-  get cartCount() {
-    return get().cart.reduce((count, item) => count + item.quantity, 0);
-  }
+  clearCart: () => set({ cart: [], cartTotal: 0, cartCount: 0 })
 }));
