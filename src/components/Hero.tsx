@@ -18,14 +18,6 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 text-sm font-medium mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
-            </span>
-            Fresh out of the oven
-          </div>
-          
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-stone-900 dark:text-white leading-[1.1] mb-6">
             Where <span className="text-primary-600">passion</span> meets the plate.
           </h1>

@@ -12,6 +12,7 @@ import { Newsletter } from './components/Newsletter';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { FloatingAction } from './components/FloatingAction';
+import { Chatbot } from './components/Chatbot';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
 
       <Footer />
       <FloatingAction />
+      <Chatbot />
     </div>
   );
 }
