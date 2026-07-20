@@ -22,10 +22,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
   body {
     @apply bg-[var(--color-surface-light)] text-stone-900 transition-colors duration-300 antialiased selection:bg-primary-500/30;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
   .dark body {

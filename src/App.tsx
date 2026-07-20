@@ -20,7 +20,7 @@ import { useStore } from './store';
 
 function MainApp() {
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen font-sans w-full overflow-x-hidden">
       <Navbar />
       <CartDrawer />
       
