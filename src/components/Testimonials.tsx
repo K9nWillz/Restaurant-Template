@@ -14,14 +14,14 @@ const testimonials = [
     id: 2,
     name: "Michael Chen",
     role: "Regular Customer",
-    content: "Fast delivery without compromising on quality. The spicy honey chicken was still hot and incredibly crispy when it arrived. Lumina has elevated the fast-casual dining experience completely.",
+    content: "Fast delivery without compromising on quality. The spicy honey chicken was still hot and incredibly crispy when it arrived. Tastia has elevated the fast-casual dining experience completely.",
     image: "https://i.pravatar.cc/150?img=11"
   },
   {
     id: 3,
     name: "Emily Rodriguez",
     role: "Event Planner",
-    content: "I recently ordered catering from Lumina for a corporate event, and everyone was blown away. The presentation was gorgeous, and the dark chocolate layer cake was the star of the show.",
+    content: "I recently ordered catering from Tastia for a corporate event, and everyone was blown away. The presentation was gorgeous, and the dark chocolate layer cake was the star of the show.",
     image: "https://i.pravatar.cc/150?img=5"
   }
 ];

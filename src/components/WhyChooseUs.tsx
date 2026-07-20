@@ -67,7 +67,7 @@ export function WhyChooseUs() {
           {/* Content */}
           <div>
             <h2 className="text-4xl font-serif font-bold text-stone-900 dark:text-white mb-6">
-              Why Lumina is the right choice for you
+              Why Tastia is the right choice for you
             </h2>
             <p className="text-stone-600 dark:text-stone-400 mb-10 text-lg">
               We believe that fast food shouldn't mean compromising on quality. From our kitchen to your table, we oversee every detail to ensure an unforgettable dining experience.

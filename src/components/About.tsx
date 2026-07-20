@@ -11,22 +11,22 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-serif font-bold text-stone-900 dark:text-white mb-6">Our Story</h2>
-            <h3 className="text-xl text-primary-600 font-medium mb-4">Born from a passion for honest, delicious food.</h3>
+            <h2 className="text-4xl font-serif font-bold text-stone-900 dark:text-white mb-6">About Tastia</h2>
+            <h3 className="text-xl text-primary-600 font-medium mb-4">Your favorite spot for delicious meals and pastries in Abakaliki.</h3>
             <p className="text-stone-600 dark:text-stone-400 mb-6 leading-relaxed">
-              Lumina started as a small neighborhood bakery with a simple mission: to bring artisanal quality to everyday dining. What began with our signature sourdough has blossomed into a full culinary experience where fast-casual meets gourmet.
+              Tastia Restaurant, Bakery and Cafe is known for bringing the best flavors to your table. Locals love our special jollof rice, so be sure to try one of our many rice dishes alongside our freshly baked pastries and perfectly grilled fish.
             </p>
             <p className="text-stone-600 dark:text-stone-400 mb-8 leading-relaxed">
-              We believe that food should not only taste incredible but also nourish the soul. That's why we partner with local farmers, use only the freshest ingredients, and prepare every meal with the same care and attention as if we were cooking for our own family.
+              Whether you're stopping by for a quick snack, a hearty lunch, or ordering delivery for the family, we pride ourselves on exceptional taste and quality. From spicy spaghetti to sweet cakes, there's something for everyone at Tastia.
             </p>
             <div className="flex gap-4">
               <div className="text-center px-4 py-2 border-l-2 border-primary-500">
-                <p className="text-3xl font-bold text-stone-900 dark:text-white mb-1">10+</p>
-                <p className="text-sm text-stone-500 dark:text-stone-400">Years of Experience</p>
+                <p className="text-3xl font-bold text-stone-900 dark:text-white mb-1">4.1★</p>
+                <p className="text-sm text-stone-500 dark:text-stone-400">Over 150+ Reviews</p>
               </div>
               <div className="text-center px-4 py-2 border-l-2 border-primary-500">
-                <p className="text-3xl font-bold text-stone-900 dark:text-white mb-1">50k+</p>
-                <p className="text-sm text-stone-500 dark:text-stone-400">Happy Customers</p>
+                <p className="text-3xl font-bold text-stone-900 dark:text-white mb-1">100%</p>
+                <p className="text-sm text-stone-500 dark:text-stone-400">Authentic Flavors</p>
               </div>
             </div>
           </motion.div>
@@ -40,8 +40,8 @@ export function About() {
           >
             <div className="absolute inset-0 bg-primary-100 dark:bg-primary-900/20 rounded-[2.5rem] transform translate-x-4 translate-y-4 -z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1572288307684-25e2e8c253be?auto=format&fit=crop&q=80&w=800" 
-              alt="Baker preparing dough" 
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=800" 
+              alt="Tastia Meals" 
               className="rounded-[2.5rem] shadow-xl w-full h-[500px] object-cover"
             />
           </motion.div>

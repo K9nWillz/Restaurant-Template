@@ -60,8 +60,8 @@ export function DailySpecials() {
                 </p>
                 <div className="mt-auto flex items-end justify-between">
                   <div>
-                    <p className="text-sm text-stone-400 line-through mb-0.5">${item.price.toFixed(2)}</p>
-                    <p className="text-3xl font-bold text-primary-600">${item.specialPrice?.toFixed(2)}</p>
+                    <p className="text-sm text-stone-400 line-through mb-0.5">₦{item.price.toFixed(2)}</p>
+                    <p className="text-3xl font-bold text-primary-600">₦{item.specialPrice?.toFixed(2)}</p>
                   </div>
                   <button 
                     onClick={() => addToCart(item)}

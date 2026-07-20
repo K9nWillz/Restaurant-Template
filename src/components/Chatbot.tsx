@@ -12,7 +12,7 @@ export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Hi there! Welcome to Lumina. How can I help you today?' }
+    { role: 'model', text: 'Hi there! Welcome to Tastia. How can I help you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -106,7 +106,7 @@ export function Chatbot() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden whitespace-nowrap font-medium text-sm pr-2"
             >
-              Have a question? Ask Lumina AI!
+              Have a question? Ask Tastia AI!
             </motion.span>
           )}
         </AnimatePresence>
@@ -129,7 +129,7 @@ export function Chatbot() {
                   <Bot size={20} />
                 </div>
                 <div>
-                  <h3 className="font-bold font-serif leading-tight">Lumina Support</h3>
+                  <h3 className="font-bold font-serif leading-tight">Tastia Support</h3>
                   <p className="text-primary-100 text-xs">Always here to help</p>
                 </div>
               </div>

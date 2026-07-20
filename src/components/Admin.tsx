@@ -399,14 +399,14 @@ export function Admin() {
                         {order.items.map((item: any, idx: number) => (
                           <div key={idx} className="flex justify-between text-sm py-1 border-b border-stone-200 dark:border-stone-800 last:border-0">
                             <span className="text-stone-700 dark:text-stone-300">{item.quantity}x {item.menuItem.name}</span>
-                            <span className="text-stone-900 dark:text-white font-medium">${((item.menuItem.isSpecial ? item.menuItem.specialPrice : item.menuItem.price) * item.quantity).toFixed(2)}</span>
+                            <span className="text-stone-900 dark:text-white font-medium">₦{((item.menuItem.isSpecial ? item.menuItem.specialPrice : item.menuItem.price) * item.quantity).toFixed(2)}</span>
                           </div>
                         ))}
                       </div>
                       
                       <div className="flex justify-between items-center font-bold text-stone-900 dark:text-white pt-2 border-t border-stone-200 dark:border-stone-800">
                         <span>Total:</span>
-                        <span>${order.total.toFixed(2)}</span>
+                        <span>₦{order.total.toFixed(2)}</span>
                       </div>
                     </div>
                   ))

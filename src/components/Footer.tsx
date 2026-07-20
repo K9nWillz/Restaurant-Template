@@ -26,7 +26,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <a href="#" className="font-serif text-3xl font-bold text-white tracking-tight block">
-              Lumina<span className="text-primary-500">.</span>
+              Tastia<span className="text-primary-500">.</span>
             </a>
             <p className="text-sm text-stone-400 leading-relaxed max-w-xs">
               Elevating fast-casual dining and artisanal baking. Fresh ingredients, honest cooking, and a passion for flavor.
@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-stone-800 text-sm text-stone-500 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} Lumina Bakery & Eats. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Tastia Restaurant & Eats. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

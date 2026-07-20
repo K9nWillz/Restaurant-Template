@@ -16,10 +16,10 @@ async function getSettings() {
     return JSON.parse(data);
   } catch (error) {
     return {
-      whatsappNumber: "1234567890",
-      systemInstruction: "You are a helpful customer support assistant for Lumina Bakery & Eats...",
+      whatsappNumber: "2347039985714",
+      systemInstruction: "You are a helpful customer support assistant for Tastia Restaurant, Bakery and Cafe located at 1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi. You offer special jollof rice, grilled fish, pastries, and more. Prices are in Nigerian Naira (₦).",
       socials: { instagram: "#", facebook: "#", tiktok: "#" },
-      contact: { address: "123 Culinary Avenue", phone: "+1 (234) 567-890", email: "hello@luminabakery.com", hours: "Mon-Fri 7 AM - 9 PM" }
+      contact: { address: "1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi", phone: "0703 998 5714", email: "hello@tastia.com", hours: "Open - Closes 22:00" }
     };
   }
 }

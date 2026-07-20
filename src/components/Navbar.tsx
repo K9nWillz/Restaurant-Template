@@ -39,7 +39,7 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <a href="#" className="font-serif text-2xl font-bold tracking-tight text-primary-600 dark:text-primary-500">
-              Lumina<span className="text-stone-900 dark:text-white">.</span>
+              Tastia<span className="text-stone-900 dark:text-white">.</span>
             </a>
           </div>
 

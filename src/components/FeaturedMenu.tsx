@@ -109,7 +109,7 @@ function MenuCard({ item, onAdd }: { key?: string | number; item: MenuItem; onAd
         <button 
           onClick={onAdd}
           className="absolute bottom-3 right-3 w-10 h-10 bg-white dark:bg-stone-900 rounded-full flex items-center justify-center text-stone-900 dark:text-white shadow-md hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors z-10 group-hover:scale-110 active:scale-95 duration-200"
-          aria-label={`Add ${item.name} to cart`}
+          aria-label={`Add ₦{item.name} to cart`}
         >
           <Plus size={20} />
         </button>
@@ -118,7 +118,7 @@ function MenuCard({ item, onAdd }: { key?: string | number; item: MenuItem; onAd
         <div className="flex justify-between items-start mb-2 gap-2">
           <h3 className="font-bold text-stone-900 dark:text-white text-lg leading-tight line-clamp-2">{item.name}</h3>
           <p className="font-bold text-primary-600 whitespace-nowrap">
-            ${item.isSpecial && item.specialPrice ? item.specialPrice.toFixed(2) : item.price.toFixed(2)}
+            ₦{item.isSpecial && item.specialPrice ? item.specialPrice.toFixed(2) : item.price.toFixed(2)}
           </p>
         </div>
         <p className="text-stone-500 dark:text-stone-400 text-sm mb-4 line-clamp-2 flex-grow">

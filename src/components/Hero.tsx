@@ -23,7 +23,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg text-stone-600 dark:text-stone-400 mb-8 leading-relaxed max-w-xl">
-            Experience the perfect blend of artisanal bakery classics and modern fast-casual dining. Crafted daily with love, locally sourced ingredients, and uncompromising quality.
+            Experience the perfect blend of local Nigerian delicacies and modern fast-casual dining. Crafted daily with love, locally sourced ingredients, and uncompromising quality.
           </p>
           
           <div className="flex flex-wrap items-center gap-4">
@@ -58,7 +58,7 @@ export function Hero() {
                 {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
               </div>
               <p className="text-sm font-medium text-stone-700 dark:text-stone-300">
-                4.9/5 from over 2,000 reviews
+                4.1/5 from over 150 reviews
               </p>
             </div>
           </div>
@@ -73,8 +73,8 @@ export function Hero() {
           {/* Main Image */}
           <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-stone-200 dark:shadow-none aspect-[4/5] md:aspect-square w-full max-w-[500px] mx-auto border-8 border-white dark:border-stone-900">
             <img 
-              src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=1000" 
-              alt="Gourmet Burger" 
+              src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&q=80&w=1000" 
+              alt="Grilled Fish and Plantain" 
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -87,11 +87,11 @@ export function Hero() {
             className="absolute -bottom-6 -left-6 z-20 bg-white dark:bg-stone-900 p-4 rounded-2xl shadow-xl shadow-stone-200/50 dark:shadow-none border border-stone-100 dark:border-stone-800 flex items-center gap-4 pr-6"
           >
             <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-2xl">
-              🥐
+              🥘
             </div>
             <div>
               <p className="text-xs text-stone-500 dark:text-stone-400 font-medium">Bestseller</p>
-              <p className="text-sm font-bold text-stone-900 dark:text-white">Butter Croissant</p>
+              <p className="text-sm font-bold text-stone-900 dark:text-white">Special Jollof</p>
             </div>
           </motion.div>
         </motion.div>

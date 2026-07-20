@@ -133,7 +133,7 @@ export function CartDrawer() {
                 </p>
                 <div className="space-y-3 w-full">
                   <a 
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Lumina Bakery! I just placed an order.\n\nName: ${name}\nEmail: ${email}\nTotal: $${cartTotal.toFixed(2)}\n\nPlease let me know the next steps for delivery and payment!`)}`}
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Tastia Restaurant! I just placed an order.\n\nName: ${name}\nEmail: ${email}\nTotal: ₦₦{cartTotal.toFixed(2)}\n\nPlease let me know the next steps for delivery and payment!`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex w-full py-3 bg-[#25D366] text-white rounded-xl font-medium items-center justify-center gap-2 hover:bg-[#20bd5a] transition-all"
@@ -184,7 +184,7 @@ export function CartDrawer() {
                       {cart.map((item) => (
                         <div key={item.menuItem.id} className="flex justify-between text-stone-600 dark:text-stone-400">
                           <span>{item.quantity}x {item.menuItem.name}</span>
-                          <span>${((item.menuItem.isSpecial ? item.menuItem.specialPrice! : item.menuItem.price) * item.quantity).toFixed(2)}</span>
+                          <span>₦{((item.menuItem.isSpecial ? item.menuItem.specialPrice! : item.menuItem.price) * item.quantity).toFixed(2)}</span>
                         </div>
                       ))}
                     </div>
@@ -230,7 +230,7 @@ export function CartDrawer() {
                             </button>
                           </div>
                           <p className="text-primary-600 font-medium text-sm mt-1">
-                            ${((item.menuItem.isSpecial ? item.menuItem.specialPrice! : item.menuItem.price) * item.quantity).toFixed(2)}
+                            ₦{((item.menuItem.isSpecial ? item.menuItem.specialPrice! : item.menuItem.price) * item.quantity).toFixed(2)}
                           </p>
                         </div>
                         
@@ -262,7 +262,7 @@ export function CartDrawer() {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-stone-500 dark:text-stone-400 text-sm">
                     <span>Subtotal</span>
-                    <span>${cartTotal.toFixed(2)}</span>
+                    <span>₦{cartTotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-stone-500 dark:text-stone-400 text-sm">
                     <span>Tax & Fees</span>
@@ -270,7 +270,7 @@ export function CartDrawer() {
                   </div>
                   <div className="flex justify-between text-stone-900 dark:text-white font-bold text-lg pt-3 border-t border-stone-200 dark:border-stone-700">
                     <span>Total</span>
-                    <span>${cartTotal.toFixed(2)}</span>
+                    <span>₦{cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
                 {view === 'cart' ? (
