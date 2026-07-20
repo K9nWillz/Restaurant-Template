@@ -1,11 +1,12 @@
 import { Clock, TimerReset, Flame } from 'lucide-react';
 import { motion } from 'motion/react';
-import { MENU_ITEMS } from '../data';
 import { useStore } from '../store';
 
 export function DailySpecials() {
-  const specials = MENU_ITEMS.filter(item => item.isSpecial);
-  const { addToCart } = useStore();
+  const { addToCart, menuItems } = useStore();
+  const specials = menuItems.filter(item => item.isSpecial);
+
+  if (specials.length === 0) return null;
 
   return (
     <section id="specials" className="py-24 bg-stone-50 dark:bg-stone-900 relative overflow-hidden">

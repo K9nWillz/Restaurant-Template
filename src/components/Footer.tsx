@@ -15,7 +15,7 @@ export function Footer() {
   const contact = settings?.contact || {
     address: '123 Culinary Avenue, Food District, NY 10001',
     phone: '+1 (234) 567-890',
-    email: 'hello@luminabakery.com',
+    email: 'hello@tastia.com',
     hours: 'Mon-Fri 7 AM - 9 PM, Sat 8 AM - 10 PM, Sun 9 AM - 8 PM'
   };
 

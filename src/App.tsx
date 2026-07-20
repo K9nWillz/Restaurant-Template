@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { FeaturedMenu } from './components/FeaturedMenu';
@@ -15,6 +16,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { FloatingAction } from './components/FloatingAction';
 import { Chatbot } from './components/Chatbot';
 import { Admin } from './components/Admin';
+import { useStore } from './store';
 
 function MainApp() {
   return (
@@ -43,6 +45,12 @@ function MainApp() {
 }
 
 export default function App() {
+  const { fetchMenu } = useStore();
+
+  useEffect(() => {
+    fetchMenu();
+  }, [fetchMenu]);
+
   return (
     <Router>
       <Routes>

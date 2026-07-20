@@ -1,13 +1,15 @@
 import type React from "react";
 import { useState, useEffect } from 'react';
 import { Save, Loader2, ListOrdered, Settings, Bell, Trash2 } from 'lucide-react';
+import { MenuManager } from './MenuManager';
 
 export function Admin() {
-  const [activeTab, setActiveTab] = useState<'settings' | 'orders'>('settings');
+  const [activeTab, setActiveTab] = useState<'settings' | 'orders' | 'menu'>('settings');
   const [whatsappNumber, setWhatsappNumber] = useState('');
   const [systemInstruction, setSystemInstruction] = useState('');
   const [socials, setSocials] = useState({ instagram: '', facebook: '', tiktok: '' });
   const [contact, setContact] = useState({ address: '', phone: '', email: '', hours: '' });
+  const [hero, setHero] = useState({ bestsellerName: '', bestsellerImage: '', bestsellerIcon: '' });
   
   const [orders, setOrders] = useState<any[]>([]);
   const [unreadOrders, setUnreadOrders] = useState(0);
@@ -37,6 +39,7 @@ export function Admin() {
         setSystemInstruction(settingsData.systemInstruction || '');
         if (settingsData.socials) setSocials(settingsData.socials);
         if (settingsData.contact) setContact(settingsData.contact);
+        if (settingsData.hero) setHero(settingsData.hero);
         
         if (Array.isArray(ordersData)) {
           setOrders(ordersData);
@@ -113,7 +116,7 @@ export function Admin() {
     setMessage('');
 
     try {
-      const payload: any = { whatsappNumber, systemInstruction, socials, contact };
+      const payload: any = { whatsappNumber, systemInstruction, socials, contact, hero };
       if (newPin) {
         payload.pin = newPin;
         payload.hint = newHint;
@@ -262,6 +265,12 @@ export function Admin() {
                 <Settings size={18} /> Settings
               </button>
               <button 
+                onClick={() => setActiveTab('menu')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === 'menu' ? 'bg-primary-600 text-white' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700'}`}
+              >
+                <ListOrdered size={18} /> Menu
+              </button>
+              <button 
                 onClick={() => setActiveTab('orders')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors relative ${activeTab === 'orders' ? 'bg-primary-600 text-white' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700'}`}
               >
@@ -276,7 +285,7 @@ export function Admin() {
           </div>
 
           <div className="p-6 sm:p-8">
-            {activeTab === 'settings' ? (
+            {activeTab === 'settings' && (
               <form onSubmit={handleSave} className="space-y-8">
                 {/* Chatbot Settings */}
                 <div className="space-y-6">
@@ -334,6 +343,24 @@ export function Admin() {
                 </div>
 
                 <div className="space-y-6">
+                  <h2 className="text-xl font-bold font-serif text-stone-900 dark:text-white pb-2 border-b border-stone-200 dark:border-stone-800">Hero Section Bestseller</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">Item Name</label>
+                      <input type="text" value={hero.bestsellerName} onChange={(e) => setHero({...hero, bestsellerName: e.target.value})} className="w-full px-4 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950 text-stone-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">Icon (Emoji)</label>
+                      <input type="text" value={hero.bestsellerIcon} onChange={(e) => setHero({...hero, bestsellerIcon: e.target.value})} className="w-full px-4 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950 text-stone-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none" />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">Image URL</label>
+                      <input type="url" value={hero.bestsellerImage} onChange={(e) => setHero({...hero, bestsellerImage: e.target.value})} className="w-full px-4 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950 text-stone-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
                   <h2 className="text-xl font-bold font-serif text-stone-900 dark:text-white pb-2 border-b border-stone-200 dark:border-stone-800">Security</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-stone-50 dark:bg-stone-950 p-6 rounded-xl border border-stone-200 dark:border-stone-800">
                     <div>
@@ -357,7 +384,8 @@ export function Admin() {
                   </button>
                 </div>
               </form>
-            ) : (
+            )}
+            {activeTab === 'orders' && (
               <div className="space-y-6">
                 {orders.length === 0 ? (
                   <div className="text-center py-12 text-stone-500">No orders yet.</div>
@@ -412,6 +440,9 @@ export function Admin() {
                   ))
                 )}
               </div>
+            )}
+            {activeTab === 'menu' && (
+              <MenuManager adminPin={adminPin} />
             )}
           </div>
         </div>

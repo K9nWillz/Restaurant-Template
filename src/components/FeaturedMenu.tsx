@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Plus, Star } from 'lucide-react';
-import { MENU_ITEMS } from '../data';
 import { Category, MenuItem } from '../types';
 import { useStore } from '../store';
 import { cn } from '../lib/utils';
@@ -9,11 +8,11 @@ import { cn } from '../lib/utils';
 export function FeaturedMenu() {
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const { addToCart } = useStore();
+  const { addToCart, menuItems } = useStore();
 
   const categories: Category[] = ['All', 'Meals', 'Bakery', 'Cakes', 'Drinks', 'Snacks'];
 
-  const filteredItems = MENU_ITEMS.filter((item) => {
+  const filteredItems = menuItems.filter((item) => {
     const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           item.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -109,7 +108,7 @@ function MenuCard({ item, onAdd }: { key?: string | number; item: MenuItem; onAd
         <button 
           onClick={onAdd}
           className="absolute bottom-3 right-3 w-10 h-10 bg-white dark:bg-stone-900 rounded-full flex items-center justify-center text-stone-900 dark:text-white shadow-md hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors z-10 group-hover:scale-110 active:scale-95 duration-200"
-          aria-label={`Add ₦{item.name} to cart`}
+          aria-label={`Add ${item.name} to cart`}
         >
           <Plus size={20} />
         </button>

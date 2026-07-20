@@ -1,6 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 export function Contact() {
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => setSettings(data))
+      .catch(console.error);
+  }, []);
+
+  const contact = settings?.contact || {
+    address: '1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi',
+    phone: '0703 998 5714',
+    email: 'hello@tastia.com'
+  };
+
   return (
     <section id="contact" className="py-24 bg-white dark:bg-stone-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,25 +34,27 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-stone-900 dark:text-white mb-1">Visit Us</h4>
-                  <p className="text-stone-600 dark:text-stone-400">123 Culinary Avenue<br/>Food District, NY 10001</p>
+                  <p className="text-stone-600 dark:text-stone-400 whitespace-pre-line">{contact.address}</p>
                 </div>
               </div>
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-stone-100 dark:bg-stone-900 rounded-full flex items-center justify-center text-primary-600 shrink-0">
                   <Phone size={24} />
                 </div>
                 <div>
                   <h4 className="font-bold text-stone-900 dark:text-white mb-1">Call Us</h4>
-                  <p className="text-stone-600 dark:text-stone-400">+1 (234) 567-890</p>
+                  <p className="text-stone-600 dark:text-stone-400">{contact.phone}</p>
                 </div>
               </div>
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-stone-100 dark:bg-stone-900 rounded-full flex items-center justify-center text-primary-600 shrink-0">
                   <Mail size={24} />
                 </div>
                 <div>
                   <h4 className="font-bold text-stone-900 dark:text-white mb-1">Email Us</h4>
-                  <p className="text-stone-600 dark:text-stone-400">hello@luminabakery.com</p>
+                  <p className="text-stone-600 dark:text-stone-400">{contact.email}</p>
                 </div>
               </div>
             </div>

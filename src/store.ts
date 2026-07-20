@@ -4,6 +4,8 @@ import { CartItem, MenuItem } from './types';
 interface AppState {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
+  menuItems: MenuItem[];
+  fetchMenu: () => Promise<void>;
   cart: CartItem[];
   isCartOpen: boolean;
   toggleCart: () => void;
@@ -35,6 +37,19 @@ export const useStore = create<AppState>((set, get) => ({
     }
     return { isDarkMode: newMode };
   }),
+  
+  menuItems: [],
+  fetchMenu: async () => {
+    try {
+      const res = await fetch('/api/menu');
+      if (res.ok) {
+        const data = await res.json();
+        set({ menuItems: data });
+      }
+    } catch (error) {
+      console.error('Failed to fetch menu:', error);
+    }
+  },
   
   cart: [],
   cartTotal: 0,

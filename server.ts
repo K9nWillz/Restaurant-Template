@@ -9,6 +9,7 @@ dotenv.config();
 
 const SETTINGS_FILE = path.join(process.cwd(), "settings.json");
 const ORDERS_FILE = path.join(process.cwd(), "orders.json");
+const MENU_FILE = path.join(process.cwd(), "menu.json");
 
 async function getSettings() {
   try {
@@ -19,7 +20,8 @@ async function getSettings() {
       whatsappNumber: "2347039985714",
       systemInstruction: "You are a helpful customer support assistant for Tastia Restaurant, Bakery and Cafe located at 1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi. You offer special jollof rice, grilled fish, pastries, and more. Prices are in Nigerian Naira (₦).",
       socials: { instagram: "#", facebook: "#", tiktok: "#" },
-      contact: { address: "1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi", phone: "0703 998 5714", email: "hello@tastia.com", hours: "Open - Closes 22:00" }
+      contact: { address: "1 Brackenbury St, LGA, Abakaliki 480251, Ebonyi", phone: "0703 998 5714", email: "hello@tastia.com", hours: "Open - Closes 22:00" },
+      hero: { bestsellerName: "Special Jollof", bestsellerImage: "https://images.unsplash.com/photo-1574653853027-5382a3d23a15?auto=format&fit=crop&q=80&w=1000", bestsellerIcon: "🥘" }
     };
   }
 }
@@ -27,6 +29,15 @@ async function getSettings() {
 async function getOrders() {
   try {
     const data = await fs.readFile(ORDERS_FILE, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    return [];
+  }
+}
+
+async function getMenu() {
+  try {
+    const data = await fs.readFile(MENU_FILE, "utf-8");
     return JSON.parse(data);
   } catch (error) {
     return [];
@@ -142,6 +153,58 @@ async function startServer() {
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ error: "Failed to delete order" });
+    }
+  });
+
+  app.get("/api/menu", async (req, res) => {
+    const menu = await getMenu();
+    res.json(menu);
+  });
+
+  app.post("/api/menu", verifyAdmin, async (req, res) => {
+    try {
+      const item = req.body;
+      const newItem = { id: Date.now().toString(), ...item };
+      const menu = await getMenu();
+      menu.push(newItem);
+      await fs.writeFile(MENU_FILE, JSON.stringify(menu, null, 2));
+      res.json(newItem);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to add menu item" });
+    }
+  });
+
+  app.put("/api/menu/:id", verifyAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedItem = req.body;
+      const menu = await getMenu();
+      const index = menu.findIndex((m: any) => m.id === id);
+      
+      if (index === -1) return res.status(404).json({ error: "Menu item not found" });
+      
+      menu[index] = { ...menu[index], ...updatedItem, id }; // ensure ID doesn't change
+      await fs.writeFile(MENU_FILE, JSON.stringify(menu, null, 2));
+      res.json(menu[index]);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update menu item" });
+    }
+  });
+
+  app.delete("/api/menu/:id", verifyAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const menu = await getMenu();
+      const updatedMenu = menu.filter((m: any) => m.id !== id);
+      
+      if (menu.length === updatedMenu.length) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+
+      await fs.writeFile(MENU_FILE, JSON.stringify(updatedMenu, null, 2));
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete menu item" });
     }
   });
 

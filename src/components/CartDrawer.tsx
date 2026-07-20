@@ -133,7 +133,7 @@ export function CartDrawer() {
                 </p>
                 <div className="space-y-3 w-full">
                   <a 
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Tastia Restaurant! I just placed an order.\n\nName: ${name}\nEmail: ${email}\nTotal: ₦₦{cartTotal.toFixed(2)}\n\nPlease let me know the next steps for delivery and payment!`)}`}
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Tastia Restaurant! I just placed an order.\n\nName: ${name}\nEmail: ${email}\nTotal: ₦${cartTotal.toFixed(2)}\n\nPlease let me know the next steps for delivery and payment!`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex w-full py-3 bg-[#25D366] text-white rounded-xl font-medium items-center justify-center gap-2 hover:bg-[#20bd5a] transition-all"

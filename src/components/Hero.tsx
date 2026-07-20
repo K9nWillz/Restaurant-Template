@@ -1,9 +1,24 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Star } from 'lucide-react';
 import { useStore } from '../store';
 
 export function Hero() {
   const { toggleCart } = useStore();
+  const [heroSettings, setHeroSettings] = useState({
+    bestsellerName: 'Special Jollof',
+    bestsellerImage: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&q=80&w=1000',
+    bestsellerIcon: '🥘'
+  });
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.hero) setHeroSettings(data.hero);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
@@ -73,8 +88,8 @@ export function Hero() {
           {/* Main Image */}
           <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-stone-200 dark:shadow-none aspect-[4/5] md:aspect-square w-full max-w-[500px] mx-auto border-8 border-white dark:border-stone-900">
             <img 
-              src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&q=80&w=1000" 
-              alt="Grilled Fish and Plantain" 
+              src={heroSettings.bestsellerImage} 
+              alt={heroSettings.bestsellerName} 
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -87,11 +102,11 @@ export function Hero() {
             className="absolute -bottom-6 -left-6 z-20 bg-white dark:bg-stone-900 p-4 rounded-2xl shadow-xl shadow-stone-200/50 dark:shadow-none border border-stone-100 dark:border-stone-800 flex items-center gap-4 pr-6"
           >
             <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-2xl">
-              🥘
+              {heroSettings.bestsellerIcon}
             </div>
             <div>
               <p className="text-xs text-stone-500 dark:text-stone-400 font-medium">Bestseller</p>
-              <p className="text-sm font-bold text-stone-900 dark:text-white">Special Jollof</p>
+              <p className="text-sm font-bold text-stone-900 dark:text-white">{heroSettings.bestsellerName}</p>
             </div>
           </motion.div>
         </motion.div>
